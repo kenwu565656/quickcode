@@ -1,0 +1,32 @@
+.Card {
+    border-radius: 10px;
+    border: 1px solid #000000;
+    box-shadow: -5px 1px 10px black;
+    background: transparent;
+    height: 50%;
+    width: 13vw;
+    overflow: hidden;
+}
+
+.card_img_container img {
+    border-radius: 50px;
+    border: 1px solid black;
+    height: 100px;
+    background-color: aliceblue;
+    margin-top: 10px;
+}
+
+.card_content_container p {
+    text-align: left;
+    padding: 0 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowarp;
+}
+
+@media (max-width: 814px){
+    .Card{
+        display: none;
+    }
+}
+

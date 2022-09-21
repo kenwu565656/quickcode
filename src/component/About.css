@@ -1,0 +1,6 @@
+.about_container {
+    text-align: left;
+    background-image: radial-gradient(ellipse at bottom right,  white 1%, transparent), url('cool-background.png');
+    background-size: cover;
+    flex-grow: 1;
+}

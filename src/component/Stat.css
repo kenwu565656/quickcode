@@ -1,0 +1,98 @@
+.dashboard {
+    background-color: rgb(240, 236, 236);
+    height: 100%;
+    width: 100%;
+}
+
+.chartRow {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .dashboard_title {
+    margin:auto;
+    font-size: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.number {
+  font-family: 'Courier New', Courier, monospace;;
+}
+  
+  .number_box_container div{
+    background-color: white;
+    margin: 10px;
+    box-shadow: 1px 1px 1px #e0dbe0;
+    padding: 0rem 5rem;
+    position: relative;
+  }
+
+  .number_box_container h3 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: lightgray;
+  }
+
+  .number_box_container p {
+    font-size: 5rem;
+  }
+
+  .number_box_container{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .chartRow2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+  
+  .chartRow2 div {
+    background-color: white;
+    margin: 10px;
+    box-shadow: 1px 1px 1px #e0dbe0;
+  }
+
+  .white_background {
+    background-color: white;
+    margin: 10px;
+    box-shadow: 1px 1px 1px #e0dbe0;
+  }
+
+@media (max-width: 828px){
+
+  .number_box_container div{
+    position: static;
+  }
+
+  .number_box_container h3 {
+    position: static;
+    color: lightgray;
+  }
+
+  .chartRow {
+    flex-direction: column;
+  }
+
+  .number_box_container {
+    flex-direction: column;
+  }
+
+  .dashboard_title {
+    text-align: left;
+    font-size: 1.5rem;
+}
+
+  .chartRow2 {
+    grid-template-columns: 100%;
+  }
+
+  .line_chart {
+    height: 500px;
+  }
+
+}
+
