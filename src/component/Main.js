@@ -15,11 +15,13 @@ const Main = () =>{
   const [filter, setFilter] = useState(JSON.parse(localStorage.getItem("filter")) || []);
   const [post, setPost] = useState([]);
   const [searchChange, setSearchChange] = useState("");
+  const [loadingPosts, setLoadingPosts] = useState(false);
 
   useEffect(() => {
-    
+      setLoadingPosts(true);
       axios({url: 'http://localhost:3001/loadposts', method: 'post', params: {filter: JSON.stringify(filter), search: searchValue, page: currentPage}}).then((response) => {
           console.log(response);
+          setLoadingPosts(false);
           setPost(response.data.data);
           setHaveMore(response.data.length > response.data.data.length? true : false);
           console.log(filter);
@@ -31,7 +33,7 @@ const Main = () =>{
         <div className="main_container">
         <Card {...owner} />
         <ContentList data = {post} searchValue = {searchValue} setSearchValue = {setSearchValue} setSearchChange = {setSearchChange} currentPage = {currentPage}
-        setCurrentPage = {setCurrentPage} haveMore = {haveMore}/>
+        setCurrentPage = {setCurrentPage} haveMore = {haveMore} loadingPosts = {loadingPosts}/>
         <Tag filter = {filter} setFilter = { setFilter } total_filter={total_filter} currentPage = {currentPage} setCurrentPage = {setCurrentPage}/>
       </div>)
       

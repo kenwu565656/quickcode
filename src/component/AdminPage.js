@@ -2,8 +2,11 @@ import React, { useState} from "react";
 import { total_filter } from "./data";
 import axios from "axios";
 import "./AdminPage.css";
+import BarLoader from "react-spinners/BarLoader";
 
 const AdminPage = () => {
+    const [logining, setLogining] = useState(false);
+    const [addingNewPost, setAddingNewPost] = useState(false);
     const [logined, setLogined] = useState(false);
     const [header, setHeader] = useState("");
     const [body, setBody] = useState("");
@@ -16,10 +19,17 @@ const AdminPage = () => {
         }
         return mylist;
     });
+    const override = {
+        display: "block",
+        margin: "0 auto 10px",
+      };
 
     const handleLogin = () => {
+        setLogining(true);
         axios({url: 'http://localhost:3001/signin', method: 'post', data:{username: userName, password: password}}).then((response) => {
-            console.log(response.data.status);
+            console.log("login " +response.data.status);
+            alert("login " + response.data.result);
+            setLogining(false);
             setLogined(response.data.result);
           });
 
@@ -34,6 +44,11 @@ const AdminPage = () => {
     }
 
     const handleNewPost = (e) => {
+        if(header == "" || body == ""){
+            alert("missing value");
+            return;
+        }
+        setAddingNewPost(true);
         let submitBody = new Object();
         submitBody["title"] = header;
         submitBody["date"] = new Date();
@@ -46,7 +61,13 @@ const AdminPage = () => {
         submitBody["tags"] = tagList;
         const bodyList = body.split("\n");
         axios({url: 'http://localhost:3001/addpost', method: 'post', params: {tags: JSON.stringify(tagList), title: header, date: new Date()}, data:{body: JSON.stringify(bodyList)}}).then((response) => {
-            console.log(response.data.status);
+             setAddingNewPost(false);
+             alert("Adding new post " + response.data.status);
+             console.log("Adding new post " +response.data.status);
+             if(response.data.status == "success"){
+                setHeader("");
+                setBody("");
+             }
           });
 
     }
@@ -55,6 +76,7 @@ const AdminPage = () => {
     return (
         
         <div className="Admin_page_container">
+            <BarLoader loading={addingNewPost} cssOverride={override} width={"100%"} height={10} color={"#013220"}/>
             <h3>Create a new post</h3>
         <h5>Header</h5>
         <textarea name={header} onChange={(e) => setHeader(e.target.value)} value={header} cols={150} rows={1}></textarea>
@@ -75,6 +97,7 @@ const AdminPage = () => {
     }else{
         return(
             <div className="Admin_page_container">
+                <BarLoader loading={logining} cssOverride={override} width={"100%"} height={10} color={"#013220"}/>
                 <h3>Login</h3>
                 <h5>User Name</h5>
                 <input value={userName} onChange={(e) => setUserName(e.target.value)}></input>

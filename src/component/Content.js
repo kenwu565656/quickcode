@@ -3,15 +3,24 @@ import "./Content.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import BarLoader from "react-spinners/BarLoader";
 
 const Content = () =>{
 
     const {id} = useParams();
     const [content, setContent] = useState([]);
+    const [loadingSinglePost, setloadingSinglePost] = useState(false);
+    const override = {
+        display: "block",
+        margin: "0 auto 10px",
+      };
+
 
     useEffect(() => {
+        setloadingSinglePost(true);
         axios({url: 'http://localhost:3001/loadpost/' + id, method: 'get'}).then((response) => {
           console.log(response.data);
+          setloadingSinglePost(false);
           setContent(response.data[0].body);
           window.scrollTo(0, 0)
           console.log(content);
@@ -29,6 +38,7 @@ const Content = () =>{
     return(
         <div className="content_container">
             <div className="shadow">
+            <BarLoader loading={loadingSinglePost} cssOverride={override} width={"100%"} height={10} color={"#013220"}/>
         {
         content.map((content, i) => {
             switch(content.type){
