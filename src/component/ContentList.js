@@ -39,7 +39,7 @@ const ContentList = ({data, setPage, searchValue, setSearchValue, setSearchChang
 
           </div>
             <div className="SearchBar_container">
-                <input placeholder="Search for some article" className="SearchBar" value={searchValue} onChange={(e) => handleChangeSearchValue(e)}></input>
+                <input placeholder="Search for articles" className="SearchBar" value={searchValue} onChange={(e) => handleChangeSearchValue(e)}></input>
                 <button className="search_button" onClick={(e) => handleSearchButton(e)}>Search</button>
             </div>
 

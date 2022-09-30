@@ -9,6 +9,7 @@ import { total_filter, owner } from "./data";
 
 const Main = () =>{
 
+  const link = process.env.REACT_APP_MyConnectionString || 'http://localhost:3001';
   const [currentPage, setCurrentPage] = useState(localStorage.getItem("currentPage") || 1);
   const [haveMore, setHaveMore] = useState(false);
   const [searchValue, setSearchValue] = useState(localStorage.getItem("search") || "");
@@ -19,7 +20,7 @@ const Main = () =>{
 
   useEffect(() => {
       setLoadingPosts(true);
-      axios({url: 'http://localhost:3001/loadposts', method: 'post', params: {filter: JSON.stringify(filter), search: searchValue, page: currentPage}}).then((response) => {
+      axios({url: link + '/loadposts', method: 'post', params: {filter: JSON.stringify(filter), search: searchValue, page: currentPage}}).then((response) => {
           console.log(response);
           setLoadingPosts(false);
           setPost(response.data.data);

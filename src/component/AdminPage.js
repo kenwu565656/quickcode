@@ -5,6 +5,7 @@ import "./AdminPage.css";
 import BarLoader from "react-spinners/BarLoader";
 
 const AdminPage = () => {
+    const link = process.env.REACT_APP_MyConnectionString || 'http://localhost:3001';
     const [logining, setLogining] = useState(false);
     const [addingNewPost, setAddingNewPost] = useState(false);
     const [logined, setLogined] = useState(false);
@@ -26,7 +27,7 @@ const AdminPage = () => {
 
     const handleLogin = () => {
         setLogining(true);
-        axios({url: 'http://localhost:3001/signin', method: 'post', data:{username: userName, password: password}}).then((response) => {
+        axios({url: link + '/signin', method: 'post', data:{username: userName, password: password}}).then((response) => {
             console.log("login " +response.data.status);
             alert("login " + response.data.result);
             setLogining(false);
@@ -60,7 +61,7 @@ const AdminPage = () => {
         } 
         submitBody["tags"] = tagList;
         const bodyList = body.split("\n");
-        axios({url: 'http://localhost:3001/addpost', method: 'post', params: {tags: JSON.stringify(tagList), title: header, date: new Date()}, data:{body: JSON.stringify(bodyList)}}).then((response) => {
+        axios({url: link + '/addpost', method: 'post', params: {tags: JSON.stringify(tagList), title: header, date: new Date()}, data:{body: JSON.stringify(bodyList)}}).then((response) => {
              setAddingNewPost(false);
              alert("Adding new post " + response.data.status);
              console.log("Adding new post " +response.data.status);

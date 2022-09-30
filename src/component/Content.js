@@ -7,6 +7,7 @@ import BarLoader from "react-spinners/BarLoader";
 
 const Content = () =>{
 
+    const link = process.env.REACT_APP_MyConnectionString || 'http://localhost:3001';
     const {id} = useParams();
     const [content, setContent] = useState([]);
     const [loadingSinglePost, setloadingSinglePost] = useState(false);
@@ -18,7 +19,7 @@ const Content = () =>{
 
     useEffect(() => {
         setloadingSinglePost(true);
-        axios({url: 'http://localhost:3001/loadpost/' + id, method: 'get'}).then((response) => {
+        axios({url: link + '/loadpost/' + id, method: 'get'}).then((response) => {
           console.log(response.data);
           setloadingSinglePost(false);
           setContent(response.data[0].body);

@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 const Home = () => {
     return(
         <div className="home_container">
-            <h3>Have you being sucks with syntax error ?</h3>
+            <h3>Have you being stuck with syntax error ?</h3>
             <img src={messy_code} className={"long_photo"}></img>
             <h3>Here is the right place to come</h3>
             <Link className="logo_link" to={"./posts"}><h1><span className="red_word">Q</span>uick<span className="green_word">Code</span></h1></Link>
