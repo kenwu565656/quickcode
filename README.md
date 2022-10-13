@@ -2,6 +2,10 @@
 
 This project is a mern stack blog website project. It mainly served as a blog website for myself to record what I have learnt. It offer tags filter so I search my work easily. I have also designed a parser to parse my new blog post to json object that can be stored in mongodb. This repo contain the frontend part of the project where the backend part is in quickCodeServer.
 
+# Video demo
+
+Video Link: [https://drive.google.com/file/d/1kvotHomjFimCk1bAk2atcgjkBWkXoEsk/view?usp=sharing](https://drive.google.com/file/d/1kvotHomjFimCk1bAk2atcgjkBWkXoEsk/view?usp=sharing)
+
 # Deploy
 
 I have deployed the project in Azure, using Azure web app and Azure cosmosDB. It will be a bit slow in the first run.
